@@ -1,0 +1,1 @@
+A repo to keep the solutions of problems on websites like UVA and Live Archive, that do not store the source code.
