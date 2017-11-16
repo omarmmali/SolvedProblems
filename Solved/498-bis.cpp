@@ -1,4 +1,4 @@
-#include <bits/stdc++.h>
+include <bits/stdc++.h>
 using namespace std;
 vector<long long> parse(string in) {
     vector<long long> ret;
@@ -28,23 +28,18 @@ long long p(long long a, long long b) {
     return ret;
 }
 int main() {
-    string in;
-    while(getline(cin, in)) {
-        vector<long long > coff = parse(in);
+    int x;
+    while(cin >> x) {
+        cin.ignore();
+        string in;
         getline(cin, in);
-        vector<long long> x = parse(in);
+        vector<long long> coff = parse(in);
+        long long res = 0;
         int n = coff.size();
-        for(int i = 0; i < x.size(); i++) {
-            if(i) {
-                cout << ' ';
-            }
-            long long res = 0;
-            for(int j = 0; j < n; j++) {
-                res += coff[j] * p(x[i], n - j - 1);
-            }
-            cout << res;
+        for(int i = 0; i < n - 1; i++) {
+            res += (n - 1 - i) * coff[i] * p(x, n - 2 - i); 
         }
-        cout << endl;
+        cout << res << endl;
     }
     return 0;
 }
