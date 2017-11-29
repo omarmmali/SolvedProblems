@@ -11,63 +11,33 @@ typedef long long ll;
 
 */
 
-vector<vector<int> > adj;
-bool colors[101];
-vector<int> ans, cur_ans;
-void bt(int cur) {
-    if(cur == adj.size()) {
-        if(cur_ans.size() > ans.size()) {
-            ans = cur_ans;
-        }
-        return;
-    }
-    if(cur_ans.size() + (adj.size() - cur - 1) < ans.size()) {
-        return;
-    }
-    bool can_be_black = 1;
-    for(int i = 0; i < adj[cur].size(); i++) {
-        int neighbor = adj[cur][i];
-        if(colors[neighbor] == 1) {
-            can_be_black = 0;
-            break;
-        }
-    }
-
-    if(can_be_black) {
-        cur_ans.push_back(cur);
-        colors[cur] = 1;
-        bt(cur + 1);
-        colors[cur] = 0;
-        cur_ans.pop_back();
-    }
-
-    bt(cur + 1);
-}
 int main() {
-    int t;
-    cin >> t;
-    while(t--) {
-        int n, m, u, v;
-        cin >> n >> m;
-        set(colors, 0);
-        adj.clear();
-        adj.resize(n + 1);
-        cur_ans.clear();
-        ans.clear();
-        for(int i = 0; i < m; i++) {
-            cin >> u >> v;
-            adj[v].push_back(u);
-            adj[u].push_back(v);
-        }
-        bt(1);
-        cout << ans.size() << endl;
-        for(int i = 0; i < ans.size(); i++) {
-            if(i) {
-                cout << ' ';
+    int n;
+    while(cin >> n) {
+        int a_x = 0;
+        int e_x = 0;
+        int o_x = 0;
+        for(int i = 1; i <= n; i++) {
+            int x = 0;
+            for(int j = 1; j <= n; j++) {
+                if(j > 1) {
+                    cout << ' ';
+                }
+                cout << i % j;
+                x ^= (i % j);
             }
-            cout << ans[i];
+            cout << " XOR = " << x << endl;
+            a_x ^= x;
+            if(i % 2 == 0) {
+                e_x ^= x;
+            }
+            else {
+                o_x ^= x;
+            }
         }
-        cout << endl;
+        cout << "XOR ALL = " << a_x << endl;
+        cout << "XOR EVEN = " << e_x << endl;
+        cout << "XOR ODD = " << o_x << endl;
     }
     return 0;
 }
