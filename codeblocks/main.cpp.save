@@ -1,0 +1,18 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+//TYPEDEFS
+typedef long long ll;
+
+//MACROS
+#define set(a, b) memset(a, b, sizeof(a))
+
+/*
+
+*/
+
+int main() {
+
+
+    return 0;
+}
